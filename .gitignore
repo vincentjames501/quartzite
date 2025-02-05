@@ -9,3 +9,7 @@ checkouts/*
 deploy.docs.sh
 target/*
 .nrepl*
+.clj-kondo/.cache
+.idea/
+*.iml
+.lsp/
