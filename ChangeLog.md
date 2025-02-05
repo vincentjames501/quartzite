@@ -1,6 +1,12 @@
 ## Changes Between Quartzite 2.2.0 and 2.3.0
 
-No changes yet.
+GitHub issue: [#46](https://github.com/michaelklishin/quartzite/issues/46)
+Add clj-kondo support and address lint issues
+Remove direct dependency on clj-time/Joda Time (DateConversion protocol is still extended if Joda Time is on the 
+classpath)
+Add support for Quartz 2.4.0 and Clojure 1.12.0
+
+Contributed by @vincentjames501.
 
 
 ## Changes Between Quartzite 2.1.0 and 2.2.0
