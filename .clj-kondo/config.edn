@@ -1,1 +1,1 @@
-{:config-paths ["../resources/clj-kondo.exports/clojurewerkz/quartzite"]}
+{:config-paths ["../resources/clj-kondo.exports/io.github.vincentjames501/quartzite"]}

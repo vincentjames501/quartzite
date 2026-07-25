@@ -37,7 +37,7 @@
                                    (simple/with-repeat-count        n)
                                    (simple/next-with-remaining-count)
                                    (simple/finalize))]
-    (is (= (* i (DateBuilder/MILLISECONDS_IN_MINUTE)) (.getRepeatInterval sched)))
+    (is (= (* i DateBuilder/MILLISECONDS_IN_MINUTE) (.getRepeatInterval sched)))
     (is (= n (.getRepeatCount    sched)))))
 
 
@@ -49,7 +49,7 @@
                                    (simple/with-repeat-count      n)
                                    (simple/now-with-remaining-count)
                                    (simple/finalize))]
-    (is (= (* i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval sched)))
+    (is (= (* i DateBuilder/MILLISECONDS_IN_HOUR) (.getRepeatInterval sched)))
     (is (= n (.getRepeatCount    sched)))))
 
 
@@ -60,8 +60,8 @@
                                    (simple/repeat-forever)
                                    (simple/now-with-existing-count)
                                    (simple/finalize))]
-    (is (= (* i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval sched)))
-    (is (= (SimpleTrigger/REPEAT_INDEFINITELY) (.getRepeatCount sched)))))
+    (is (= (* i DateBuilder/MILLISECONDS_IN_HOUR) (.getRepeatInterval sched)))
+    (is (= SimpleTrigger/REPEAT_INDEFINITELY (.getRepeatCount sched)))))
 
 
 (deftest test-simple-schedule-dsl-example6
@@ -71,4 +71,4 @@
                                    (simple/next-with-existing-count)
                                    (simple/repeat-forever)
                                    (simple/finalize))]
-    (is (= (* 24 i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval sched)))))
+    (is (= (* 24 i DateBuilder/MILLISECONDS_IN_HOUR) (.getRepeatInterval sched)))))

@@ -1,7 +1,0 @@
-language: clojure
-script: lein all test
-jdk:
-  - openjdk25
-branches:
-  only:
-    - master

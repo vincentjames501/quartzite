@@ -2,14 +2,15 @@
 
 Quartzite is a powerful Clojure scheduling library built on top the [Quartz Scheduler](http://quartz-scheduler.org/).
 
+Forked from [michaelklishin/quartzite](https://github.com/michaelklishin/quartzite)
+
 
 ## Project goals
 
  * Support all commonly used Quartz features but follow the 80/20 rule
  * Be (reasonably) idiomatic but easy to understand for people familiar with Quartz
  * Be [well documented](doc/guides/README.md)
- * Be [well tested](https://github.com/michaelklishin/quartzite/tree/master/test/clojurewerkz/quartzite/test)
- * Integrate with the JDK date/time types (`java.time`) where appropriate, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
+ * Be [well tested](https://github.com/vincentjames501/quartzite/tree/master/test/clojurewerkz/quartzite/test)
  * Not a half-assed effort: libraries should be well maintained and test-driven or not be open sourced in the first place
 
 
@@ -27,33 +28,20 @@ feedback.
 Quartzite requires Clojure 1.12 or later. The most recent release is always
 recommended.
 
-## Maven Artifacts
+## Artifacts
 
-### The Most Recent Release
+Quartzite artifacts are [released to Clojars](https://clojars.org/io.github.vincentjames501/quartzite).
 
-Quartzite artifacts are [released to Clojars](https://clojars.org/clojurewerkz/quartzite). If you are using Maven, add the following repository
-definition to your `pom.xml`:
-
-```xml
-<repository>
-  <id>clojars.org</id>
-  <url>http://clojars.org/repo</url>
-</repository>
-```
+Releases up to and including `2.2.0` were published as `clojurewerkz/quartzite`; this fork
+publishes under `io.github.vincentjames501/quartzite` starting with `2.3.0`.
 
 ### The Most Recent Version
 
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.vincentjames501/quartzite.svg)](https://clojars.org/io.github.vincentjames501/quartzite)
+
 With Leiningen:
 
-[![Clojars Project](http://clojars.org/clojurewerkz/quartzite/latest-version.svg)](http://clojars.org/clojurewerkz/quartzite)
-
-With Maven:
-
-    <dependency>
-      <groupId>clojurewerkz</groupId>
-      <artifactId>quartzite</artifactId>
-      <version>2.1.0</version>
-    </dependency>
+    [io.github.vincentjames501/quartzite "2.3.0"]
 
 
 
@@ -82,10 +70,10 @@ Quartzite is part of the [group of Clojure libraries known as ClojureWerkz](http
 
 ## Continuous Integration
 
-[![Continuous Integration status](https://secure.travis-ci.org/michaelklishin/quartzite.png)](http://travis-ci.org/michaelklishin/quartzite)
+[![Tests](https://github.com/vincentjames501/quartzite/actions/workflows/tests.yml/badge.svg)](https://github.com/vincentjames501/quartzite/actions/workflows/tests.yml)
 
 
-CI is hosted by [travis-ci.org](http://travis-ci.org)
+CI is hosted by [GitHub Actions](https://github.com/vincentjames501/quartzite/actions)
 
 
 

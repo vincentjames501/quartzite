@@ -1,5 +1,23 @@
 ## Changes Between Quartzite 2.2.0 and 2.3.0
 
+### Artifact Coordinates Changed
+
+This fork publishes to Clojars under a new group ID:
+
+``` clojure
+;; before
+[clojurewerkz/quartzite "2.2.0"]
+;; now
+[io.github.vincentjames501/quartzite "2.3.0"]
+```
+
+The Clojure namespaces are unchanged (`clojurewerkz.quartzite.*`), so only the dependency
+coordinates need updating. Note that the old and new artifacts must not be on the classpath at the
+same time — they provide the same namespaces.
+
+The exported clj-kondo configuration moved accordingly, from
+`clj-kondo.exports/clojurewerkz/quartzite` to `clj-kondo.exports/io.github.vincentjames501/quartzite`.
+
 ### Joda Time Support Removed
 
 The `clj-time`/Joda Time dependency is gone and the `DateConversion` protocol is no longer extended

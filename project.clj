@@ -1,5 +1,7 @@
-(defproject clojurewerkz/quartzite "2.3.0-SNAPSHOT"
+(defproject io.github.vincentjames501/quartzite "2.3.0-SNAPSHOT"
   :description "Quarzite is a thin Clojure layer on top the Quartz Scheduler"
+  :url "https://github.com/vincentjames501/quartzite"
+  :scm {:name "git" :url "https://github.com/vincentjames501/quartzite"}
   :license {:name "Eclipse Public License"}
   :dependencies [[org.clojure/clojure "1.12.5"]
                  [org.quartz-scheduler/quartz "2.5.2"]]
