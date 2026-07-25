@@ -35,7 +35,7 @@ jobs:
       - name: Install Leiningen
         uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d # v13.6.1
         with:
-          lein: 2.13.0
+          lein: 2.12.0
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
