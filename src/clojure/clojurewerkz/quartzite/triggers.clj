@@ -65,7 +65,7 @@
   (.startNow tb))
 
 
-;; Seamless JodaTime integration is one
+;; Seamless java.time integration is one
 ;; of the goals of Quartzite.
 (defn start-at
   ^TriggerBuilder [^TriggerBuilder tb date]

@@ -1,10 +1,51 @@
 ## Changes Between Quartzite 2.2.0 and 2.3.0
 
+### Joda Time Support Removed
+
+The `clj-time`/Joda Time dependency is gone and the `DateConversion` protocol is no longer extended
+to `org.joda.time` types, even when Joda Time is on the classpath.
+
+`DateConversion` now covers `java.util.Date`, `java.util.Calendar` and the `java.time` types
+(`Instant`, `OffsetDateTime`, `ZonedDateTime`, `LocalDateTime`, `LocalDate`).
+
+This is a breaking change. Code that passed Joda Time objects to `triggers/start-at`,
+`triggers/end-at` and friends should either convert to `java.time` or extend
+`clojurewerkz.quartzite.conversion/DateConversion` itself.
+
+### Quartz Upgraded to 2.5.2
+
+[Quartz](http://quartz-scheduler.org/) has been upgraded from `2.4.0` to `2.5.2`. The `2.5.0`
+upgrade had previously been deferred pending
+[quartz-scheduler/quartz#1298](https://github.com/quartz-scheduler/quartz/issues/1298); the
+dependency now moves directly to `2.5.2`.
+
+### Clojure Upgraded to 1.12.5
+
+The default Clojure dependency (and the `1.12` test profile) moved from `1.12.0` to `1.12.5`.
+
+Development-only dependencies were bumped as well: `org.clojure/tools.logging` to `1.3.1` and
+`org.slf4j/slf4j-log4j12` to `2.0.18`.
+
+### `DateConversion` Fixes for `LocalDateTime` and `LocalDate`
+
+`to-date` threw for both types — `IllegalArgumentException` for `LocalDateTime` and
+`ClassCastException` for `LocalDate`. `ZoneId/systemDefault` had been written without parentheses,
+which Clojure 1.12 compiles to a method *value* rather than a call, so a function was passed where a
+`ZoneId` was expected.
+
+`to-date` is now also tagged as returning `java.util.Date`, so `triggers/start-at` and
+`triggers/end-at` no longer reflect against the `startAt(java.time.Instant)` overload Quartz 2.5
+added. Note that this means implementations of `DateConversion` are expected to honour the
+protocol's contract and return a `java.util.Date`.
+
+### clj-kondo Support
+
+Quartzite now exports [clj-kondo](https://github.com/clj-kondo/clj-kondo) configuration, including
+hooks for the `jobs/build`, `triggers/build` and `schedule` threading macros, so that linting
+Quartzite DSL code no longer reports spurious arity errors. Lint issues in the library itself have
+been addressed.
+
 GitHub issue: [#46](https://github.com/michaelklishin/quartzite/issues/46)
-Add clj-kondo support and address lint issues
-Remove direct dependency on clj-time/Joda Time (DateConversion protocol is still extended if Joda Time is on the 
-classpath)
-Add support for Quartz 2.4.0 and Clojure 1.12.0
 
 Contributed by @vincentjames501.
 

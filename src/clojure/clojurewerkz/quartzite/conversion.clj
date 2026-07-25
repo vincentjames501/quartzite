@@ -38,6 +38,8 @@
     to-job-data   [input] "Instantiates a JobDataMap instance from a Clojure map")
   (from-job-data [input] "Converts a JobDataMap to a Clojure map"))
 
+;; each type intentionally implements only the direction that makes sense for it
+#_{:clj-kondo/ignore [:missing-protocol-method]}
 (extend-protocol JobDataMapConversion
   IPersistentMap
   (to-job-data [^IPersistentMap input]
@@ -78,7 +80,8 @@
 
 
 (defprotocol DateConversion
-  (to-date [input] "Converts given input to java.util.Date"))
+  (^Date
+    to-date [input] "Converts given input to java.util.Date"))
 
 (extend-protocol DateConversion
   Date
@@ -103,32 +106,11 @@
 
   LocalDateTime
   (to-date [^LocalDateTime input]
-    (Date/from (.toInstant ^ZonedDateTime (.atZone input ZoneId/systemDefault))))
+    (Date/from (.toInstant ^ZonedDateTime (.atZone input (ZoneId/systemDefault)))))
 
   LocalDate
   (to-date [^LocalDate input]
-    (Date/from (.toInstant ^ZonedDateTime (.atStartOfDay input ZoneId/systemDefault)))))
-
-;; Dynamically load Joda time support if possible
-(defn class-exists? [sym]
-  (try
-    (boolean (resolve sym))
-    (catch Throwable _ false)))
-
-(when (every? class-exists? ['org.joda.time.DateTime
-                             'org.joda.time.MutableDateTime
-                             'org.joda.time.base.BaseDateTime])
-  (eval
-   `(extend-protocol DateConversion
-      org.joda.time.DateTime
-      (to-date [^org.joda.time.DateTime input#]
-        (.toDate input#))
-      org.joda.time.MutableDateTime
-      (to-date [^org.joda.time.MutableDateTime input#]
-        (.toDate input#))
-      org.joda.time.base.BaseDateTime
-      (to-date [^org.joda.time.base.BaseDateTime input#]
-        (.toDate input#)))))
+    (Date/from (.toInstant ^ZonedDateTime (.atStartOfDay input (ZoneId/systemDefault))))))
 
 (defprotocol KeyCoercion
   (^TriggerKey
@@ -136,6 +118,8 @@
   (^JobKey
     to-job-key [input] "Converts a key to a JobKey instance"))
 
+;; TriggerKey and JobKey each coerce to themselves only
+#_{:clj-kondo/ignore [:missing-protocol-method]}
 (extend-protocol KeyCoercion
   TriggerKey
   (to-trigger-key [input]

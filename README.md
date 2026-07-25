@@ -9,7 +9,7 @@ Quartzite is a powerful Clojure scheduling library built on top the [Quartz Sche
  * Be (reasonably) idiomatic but easy to understand for people familiar with Quartz
  * Be [well documented](doc/guides/README.md)
  * Be [well tested](https://github.com/michaelklishin/quartzite/tree/master/test/clojurewerkz/quartzite/test)
- * Integrate with libraries like JodaTime where appropriate, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
+ * Integrate with the JDK date/time types (`java.time`) where appropriate, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
  * Not a half-assed effort: libraries should be well maintained and test-driven or not be open sourced in the first place
 
 
@@ -24,9 +24,8 @@ feedback.
 
 ## Supported Clojure Versions
 
-Quartzite requires Clojure 1.6 or later. The most recent release is always
+Quartzite requires Clojure 1.12 or later. The most recent release is always
 recommended.
-
 
 ## Maven Artifacts
 
@@ -95,7 +94,7 @@ CI is hosted by [travis-ci.org](http://travis-ci.org)
 Quartzite uses [Leiningen 2](https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md). Make
 sure you have it installed and then run tests against all supported Clojure versions using
 
-    lein all test
+    lein test
 
 Then create a branch and make your changes on it. Once you are done with your changes and all
 tests pass, submit a pull request on Github.

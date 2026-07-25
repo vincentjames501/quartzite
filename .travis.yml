@@ -1,7 +1,7 @@
 language: clojure
 script: lein all test
 jdk:
-  - openjdk21
+  - openjdk25
 branches:
   only:
     - master

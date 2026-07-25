@@ -1,10 +1,9 @@
 (ns clojurewerkz.quartzite.test.triggers-test
-  (:refer-clojure :exclude [key])
   (:require [clojurewerkz.quartzite.jobs :as jobs]
             [clojure.test :refer [deftest is]]
-            [clojurewerkz.quartzite.conversion :refer [from-job-data to-job-data]]
+            [clojurewerkz.quartzite.conversion :refer [from-job-data to-date to-job-data]]
             [clojurewerkz.quartzite.triggers :as triggers])
-  (:import (java.time Instant)
+  (:import (java.time Instant LocalDateTime)
            (java.time.temporal ChronoUnit)
            (java.util Date)))
 
@@ -57,6 +56,20 @@
                                 (triggers/end-at   end))]
     (is (= start (.getStartTime trigger)))
     (is (= end   (.getEndTime trigger)))))
+
+
+(deftest test-trigger-builder-dsl-accepts-java-time-types
+  (let [start   (Instant/parse "2035-02-15T12:30:00Z")
+        end     (.plus start 3 ChronoUnit/HOURS)
+        trigger (triggers/build (triggers/with-identity "basic.trigger5a")
+                                (triggers/start-at start)
+                                (triggers/end-at   end))]
+    (is (= (Date/from start) (.getStartTime trigger)))
+    (is (= (Date/from end)   (.getEndTime trigger))))
+  (let [ldt     (LocalDateTime/of 2035 2 15 12 30 0)
+        trigger (triggers/build (triggers/with-identity "basic.trigger5b")
+                                (triggers/start-at ldt))]
+    (is (= (to-date ldt) (.getStartTime trigger)))))
 
 
 (deftest test-trigger-builder-dsl-example6
