@@ -9,7 +9,7 @@ Quartzite is a powerful Clojure scheduling library built on top the [Quartz Sche
  * Be (reasonably) idiomatic but easy to understand for people familiar with Quartz
  * Be [well documented](doc/guides/README.md)
  * Be [well tested](https://github.com/michaelklishin/quartzite/tree/master/test/clojurewerkz/quartzite/test)
- * Integrate with libraries like JodaTime where appropriate, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
+ * Integrate with `java.time` where appropriate
  * Not a half-assed effort: libraries should be well maintained and test-driven or not be open sourced in the first place
 
 

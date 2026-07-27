@@ -69,7 +69,7 @@
                 (sdi/on-saturday-and-sunday)
                 (sdi/finalize))]
     (is (= i (.getRepeatInterval sched)))
-    (is (= (SimpleTrigger/REPEAT_INDEFINITELY) (.getRepeatCount sched)))))
+    (is (= SimpleTrigger/REPEAT_INDEFINITELY (.getRepeatCount sched)))))
 
 
 (deftest test-daily-interval-schedule-dsl-example6

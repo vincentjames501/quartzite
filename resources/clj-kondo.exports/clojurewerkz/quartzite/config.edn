@@ -1,8 +1,8 @@
-{:lint-as {clojurewerkz.quartzite.jobs/defjob clojure.core/defn
+{:lint-as {clojurewerkz.quartzite.jobs/defjob               clojure.core/defn
            clojurewerkz.quartzite.stateful/def-stateful-job clojure.core/defn}
- :hooks   {:analyze-call {
-
-
-                          clojurewerkz.quartzite.jobs/build clj-kondo.clojurewerkz.quartzite/jobs-build
-                          clojurewerkz.quartzite.triggers/build clj-kondo.clojurewerkz.quartzite/triggers-build
-                          }}}
+ :hooks   {:analyze-call {clojurewerkz.quartzite.jobs/build                          clj-kondo.clojurewerkz.quartzite/jobs-build
+                          clojurewerkz.quartzite.triggers/build                      clj-kondo.clojurewerkz.quartzite/triggers-build
+                          clojurewerkz.quartzite.schedule.simple/schedule            clj-kondo.clojurewerkz.quartzite/simple-schedule
+                          clojurewerkz.quartzite.schedule.calendar-interval/schedule clj-kondo.clojurewerkz.quartzite/calendar-interval-schedule
+                          clojurewerkz.quartzite.schedule.daily-interval/schedule    clj-kondo.clojurewerkz.quartzite/daily-interval-schedule
+                          clojurewerkz.quartzite.schedule.cron/schedule              clj-kondo.clojurewerkz.quartzite/cron-schedule}}}

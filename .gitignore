@@ -10,6 +10,7 @@ deploy.docs.sh
 target/*
 .nrepl*
 .clj-kondo/.cache
+.clj-kondo/imports
 .idea/
 *.iml
 .lsp/

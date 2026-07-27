@@ -1,5 +1,4 @@
 (ns clojurewerkz.quartzite.test.jobs-test
-  (:refer-clojure :exclude [key])
   (:require [clojure.test :refer [deftest is]]
             [clojurewerkz.quartzite.jobs :as jobs]
             [clojurewerkz.quartzite.conversion :refer [from-job-data to-job-data]])

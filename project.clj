@@ -3,9 +3,7 @@
   :min-lein-version "2.5.1"
   :license {:name "Eclipse Public License"}
   :dependencies [[org.clojure/clojure "1.12.0"]
-                 ;; 2.5.0 Has a bug that should be fixed before
-                 ;; updating https://github.com/quartz-scheduler/quartz/issues/1298
-                 [org.quartz-scheduler/quartz "2.4.0"]]
+                 [org.quartz-scheduler/quartz "2.5.2"]]
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :test-selectors {:all     (constantly true)

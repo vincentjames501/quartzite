@@ -1,10 +1,40 @@
 ## Changes Between Quartzite 2.2.0 and 2.3.0
 
+### Quartz Upgraded to 2.5.2, Clojure 1.12 Supported
+
+[Quartz](http://quartz-scheduler.org/) goes from `2.3.2` to `2.5.2`. The `2.5.0` upgrade had been
+deferred pending [quartz-scheduler/quartz#1298](https://github.com/quartz-scheduler/quartz/issues/1298),
+since resolved.
+
+### Joda Time Support Removed
+
+Breaking. The `clj-time`/Joda Time dependency is gone and `DateConversion` is no longer extended to
+`org.joda.time` types, even when Joda Time is on the classpath. It now covers `java.util.Date`,
+`java.util.Calendar` and the `java.time` types (`Instant`, `OffsetDateTime`, `ZonedDateTime`,
+`LocalDateTime`, `LocalDate`). To keep passing Joda objects to `triggers/start-at` and friends,
+convert to `java.time` or extend the protocol yourself:
+
+``` clojure
+(extend-protocol clojurewerkz.quartzite.conversion/DateConversion
+  org.joda.time.base.BaseDateTime
+  (to-date [input] (.toDate input)))
+```
+
+### `DateConversion` Fixes
+
+`to-date` threw for `LocalDateTime` and `LocalDate` — `ZoneId/systemDefault` was missing
+parentheses, which Clojure 1.12 compiles to a method *value* rather than a call. It is now also
+tagged `^java.util.Date`, so `triggers/start-at` and `end-at` no longer reflect against the
+`startAt(java.time.Instant)` overload Quartz 2.5 added; implementations are expected to honour that
+and return a `java.util.Date`.
+
+### clj-kondo Support
+
+Quartzite now exports [clj-kondo](https://github.com/clj-kondo/clj-kondo) configuration, with hooks
+for the `jobs/build`, `triggers/build` and `schedule` threading macros so that linting Quartzite DSL
+code no longer reports spurious arity errors. Lint issues in the library itself have been addressed.
+
 GitHub issue: [#46](https://github.com/michaelklishin/quartzite/issues/46)
-Add clj-kondo support and address lint issues
-Remove direct dependency on clj-time/Joda Time (DateConversion protocol is still extended if Joda Time is on the 
-classpath)
-Add support for Quartz 2.4.0 and Clojure 1.12.0
 
 Contributed by @vincentjames501.
 
